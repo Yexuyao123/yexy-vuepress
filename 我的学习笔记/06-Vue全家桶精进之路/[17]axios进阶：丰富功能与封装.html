@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>[17] axios 进阶：丰富功能与封装 | 叶旭瑶</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.2e040761.css" as="style"><link rel="preload" href="/assets/js/app.a8df1c95.js" as="script"><link rel="preload" href="/assets/js/2.48d09664.js" as="script"><link rel="preload" href="/assets/js/75.bf491959.js" as="script"><link rel="prefetch" href="/assets/js/10.90ae3223.js"><link rel="prefetch" href="/assets/js/11.60747cf8.js"><link rel="prefetch" href="/assets/js/12.78613ebb.js"><link rel="prefetch" href="/assets/js/13.15cefad8.js"><link rel="prefetch" href="/assets/js/14.2706d9af.js"><link rel="prefetch" href="/assets/js/15.4a1534b3.js"><link rel="prefetch" href="/assets/js/16.667b9eec.js"><link rel="prefetch" href="/assets/js/17.2f6f2fb7.js"><link rel="prefetch" href="/assets/js/18.ae0db680.js"><link rel="prefetch" href="/assets/js/19.3a1a9b2b.js"><link rel="prefetch" href="/assets/js/20.b37fd568.js"><link rel="prefetch" href="/assets/js/21.00e571a2.js"><link rel="prefetch" href="/assets/js/22.7113929a.js"><link rel="prefetch" href="/assets/js/23.76749a7b.js"><link rel="prefetch" href="/assets/js/24.d64a7195.js"><link rel="prefetch" href="/assets/js/25.dd0efafa.js"><link rel="prefetch" href="/assets/js/26.b526a833.js"><link rel="prefetch" href="/assets/js/27.0d7e1a2b.js"><link rel="prefetch" href="/assets/js/28.ff5daa9c.js"><link rel="prefetch" href="/assets/js/29.6b832bc1.js"><link rel="prefetch" href="/assets/js/3.dc0eeb90.js"><link rel="prefetch" href="/assets/js/30.9473db5d.js"><link rel="prefetch" href="/assets/js/31.32df4c34.js"><link rel="prefetch" href="/assets/js/32.e34273e7.js"><link rel="prefetch" href="/assets/js/33.4d28e2f8.js"><link rel="prefetch" href="/assets/js/34.e19c3a87.js"><link rel="prefetch" href="/assets/js/35.ae6f54a4.js"><link rel="prefetch" href="/assets/js/36.c311869c.js"><link rel="prefetch" href="/assets/js/37.fe07ec53.js"><link rel="prefetch" href="/assets/js/38.b9b76405.js"><link rel="prefetch" href="/assets/js/39.ce5b3eb6.js"><link rel="prefetch" href="/assets/js/4.52766d3a.js"><link rel="prefetch" href="/assets/js/40.c28128a5.js"><link rel="prefetch" href="/assets/js/41.baa5b9df.js"><link rel="prefetch" href="/assets/js/42.e9dd8626.js"><link rel="prefetch" href="/assets/js/43.1870fb99.js"><link rel="prefetch" href="/assets/js/44.5f5cadd9.js"><link rel="prefetch" href="/assets/js/45.6e86d635.js"><link rel="prefetch" href="/assets/js/46.6f9e3d5c.js"><link rel="prefetch" href="/assets/js/47.da89bc26.js"><link rel="prefetch" href="/assets/js/48.29abeeb3.js"><link rel="prefetch" href="/assets/js/49.82a3a29d.js"><link rel="prefetch" href="/assets/js/5.9eccb937.js"><link rel="prefetch" href="/assets/js/50.b2028d20.js"><link rel="prefetch" href="/assets/js/51.9208c15a.js"><link rel="prefetch" href="/assets/js/52.db1c8ad3.js"><link rel="prefetch" href="/assets/js/53.2c6c7978.js"><link rel="prefetch" href="/assets/js/54.4a5fc56a.js"><link rel="prefetch" href="/assets/js/55.43d12619.js"><link rel="prefetch" href="/assets/js/56.f78e78dd.js"><link rel="prefetch" href="/assets/js/57.b92e209e.js"><link rel="prefetch" href="/assets/js/58.6b552921.js"><link rel="prefetch" href="/assets/js/59.90266c96.js"><link rel="prefetch" href="/assets/js/6.710abc21.js"><link rel="prefetch" href="/assets/js/60.fb66ef65.js"><link rel="prefetch" href="/assets/js/61.82cc26c2.js"><link rel="prefetch" href="/assets/js/62.a0a80205.js"><link rel="prefetch" href="/assets/js/63.dda7942d.js"><link rel="prefetch" href="/assets/js/64.0a5e6f5b.js"><link rel="prefetch" href="/assets/js/65.fb8144ce.js"><link rel="prefetch" href="/assets/js/66.8a1226d0.js"><link rel="prefetch" href="/assets/js/67.5b575b21.js"><link rel="prefetch" href="/assets/js/68.f3b6f395.js"><link rel="prefetch" href="/assets/js/69.2c6ce239.js"><link rel="prefetch" href="/assets/js/7.d448298b.js"><link rel="prefetch" href="/assets/js/70.142aeb69.js"><link rel="prefetch" href="/assets/js/71.a3a3c331.js"><link rel="prefetch" href="/assets/js/72.c2f1a26e.js"><link rel="prefetch" href="/assets/js/73.8f72ade2.js"><link rel="prefetch" href="/assets/js/74.69faefcd.js"><link rel="prefetch" href="/assets/js/76.54b30f01.js"><link rel="prefetch" href="/assets/js/77.9b2b976c.js"><link rel="prefetch" href="/assets/js/78.19096d31.js"><link rel="prefetch" href="/assets/js/79.ae5bc63c.js"><link rel="prefetch" href="/assets/js/8.04185565.js"><link rel="prefetch" href="/assets/js/9.30d66b6d.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.2e040761.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/hero.jpg" alt="叶旭瑶" class="logo"> <span class="site-name can-hide">叶旭瑶</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="https://baidu.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  导航栏
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="博客" class="dropdown-title"><span class="title">博客</span> <span class="arrow down"></span></button> <button type="button" aria-label="博客" class="mobile-dropdown-title"><span class="title">博客</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/我的学习笔记/" class="nav-link">
+  博客总览
+</a></li><li class="dropdown-item"><!----> <a href="/我的学习笔记/01-Some前端理念/" class="nav-link">
+  01-Some前端理念
+</a></li><li class="dropdown-item"><!----> <a href="/我的学习笔记/02-CSS美学/" class="nav-link">
+  02-CSS美学
+</a></li><li class="dropdown-item"><!----> <a href="/我的学习笔记/03-JavaScript永动机/" class="nav-link">
+  03-JavaScript永动机
+</a></li><li class="dropdown-item"><!----> <a href="/我的学习笔记/04-蒂姆·伯纳斯·李Browser/" class="nav-link">
+  04-蒂姆·伯纳斯·李Browser
+</a></li><li class="dropdown-item"><!----> <a href="/我的学习笔记/05-Plugin成就/" class="nav-link">
+  05-Plugin成就
+</a></li><li class="dropdown-item"><!----> <a href="/我的学习笔记/06-Vue全家桶精进之路/" class="nav-link">
+  06-Vue全家桶精进之路
+</a></li><li class="dropdown-item"><!----> <a href="/我的学习笔记/07-计算机常识积累/" class="nav-link">
+  07-计算机常识积累
+</a></li></ul></div></div><div class="nav-item"><a href="https://google.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  谷歌搜索
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="https://baidu.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  导航栏
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="博客" class="dropdown-title"><span class="title">博客</span> <span class="arrow down"></span></button> <button type="button" aria-label="博客" class="mobile-dropdown-title"><span class="title">博客</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/我的学习笔记/" class="nav-link">
+  博客总览
+</a></li><li class="dropdown-item"><!----> <a href="/我的学习笔记/01-Some前端理念/" class="nav-link">
+  01-Some前端理念
+</a></li><li class="dropdown-item"><!----> <a href="/我的学习笔记/02-CSS美学/" class="nav-link">
+  02-CSS美学
+</a></li><li class="dropdown-item"><!----> <a href="/我的学习笔记/03-JavaScript永动机/" class="nav-link">
+  03-JavaScript永动机
+</a></li><li class="dropdown-item"><!----> <a href="/我的学习笔记/04-蒂姆·伯纳斯·李Browser/" class="nav-link">
+  04-蒂姆·伯纳斯·李Browser
+</a></li><li class="dropdown-item"><!----> <a href="/我的学习笔记/05-Plugin成就/" class="nav-link">
+  05-Plugin成就
+</a></li><li class="dropdown-item"><!----> <a href="/我的学习笔记/06-Vue全家桶精进之路/" class="nav-link">
+  06-Vue全家桶精进之路
+</a></li><li class="dropdown-item"><!----> <a href="/我的学习笔记/07-计算机常识积累/" class="nav-link">
+  07-计算机常识积累
+</a></li></ul></div></div><div class="nav-item"><a href="https://google.com" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  谷歌搜索
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><a href="/我的学习笔记/01-Some前端理念" class="sidebar-heading clickable"><span>01-Some前端理念</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/我的学习笔记/02-CSS美学" class="sidebar-heading clickable"><span>02-CSS美学</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/我的学习笔记/03-JavaScript永动机" class="sidebar-heading clickable"><span>03-JavaScript永动机</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/我的学习笔记/04-蒂姆·伯纳斯·李Browser" class="sidebar-heading clickable"><span>04-蒂姆·伯纳斯·李Browser</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/我的学习笔记/05-Plugin成就" class="sidebar-heading clickable"><span>05-Plugin成就</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/我的学习笔记/06-Vue全家桶精进之路" class="sidebar-heading clickable open"><span>06-Vue全家桶精进之路</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[01]axios初识：axios代替ajax.html" class="sidebar-link">[01]axios初识：axios代替ajax</a></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[02]入门篇：vuejs文档基础摘要-更新中.html" class="sidebar-link">[02]入门篇：vuejs文档基础摘要-更新中</a></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[03]基础篇：Vue实例&amp;生命周期&amp;文本插值&amp;过滤器&amp;指令.html" class="sidebar-link">[03]基础篇：Vue实例&amp;生命周期&amp;文本插值&amp;过滤器&amp;指令</a></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[04]基础篇：计算属性与方法.html" class="sidebar-link">[04]基础篇：计算属性与方法</a></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[05]基础篇：v-bind&amp;class与style绑定.html" class="sidebar-link">[05]基础篇：v-bind&amp;class与style绑定</a></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[06]基础篇：内置指令与自定义指令.html" class="sidebar-link">[06]基础篇：内置指令与自定义指令</a></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[07]基础篇：表单与v-model.html" class="sidebar-link">[07]基础篇：表单与v-model</a></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[08]基础篇：组件与插槽.html" class="sidebar-link">[08]基础篇：组件与插槽</a></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[09]进阶篇：render函数的妙用.html" class="sidebar-link">[09]进阶篇：render函数的妙用</a></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[10]进阶篇：使用vue-cli脚手架工具搭建项目.html" class="sidebar-link">[10]进阶篇：使用vue-cli脚手架工具搭建项目</a></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[11]进阶篇：vue-router前端路由.html" class="sidebar-link">[11]进阶篇：vue-router前端路由</a></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[12]进阶篇：vuex状态管理.html" class="sidebar-link">[12]进阶篇：vuex状态管理</a></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[13]番外篇：多看官方文档.html" class="sidebar-link">[13]番外篇：多看官方文档</a></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[14]实践篇：vue的一些偷懒行为.html" class="sidebar-link">[14]实践篇：vue的一些偷懒行为</a></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[15]实践篇：router进阶之手撸分页器.html" class="sidebar-link">[15]实践篇：router进阶之手撸分页器</a></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[16]axios进阶：Cancellation实现在切换页面前取消请求.html" class="sidebar-link">[16]axios进阶：Cancellation实现在切换页面前取消请求</a></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[17]axios进阶：丰富功能与封装.html" class="active sidebar-link">[17]axios进阶：丰富功能与封装</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/我的学习笔记/06-Vue全家桶精进之路/[17]axios进阶：丰富功能与封装.html#初级版本" class="sidebar-link">初级版本</a></li><li class="sidebar-sub-header"><a href="/我的学习笔记/06-Vue全家桶精进之路/[17]axios进阶：丰富功能与封装.html#目标功能" class="sidebar-link">目标功能</a></li><li class="sidebar-sub-header"><a href="/我的学习笔记/06-Vue全家桶精进之路/[17]axios进阶：丰富功能与封装.html#config-解读与规划" class="sidebar-link">config 解读与规划</a></li><li class="sidebar-sub-header"><a href="/我的学习笔记/06-Vue全家桶精进之路/[17]axios进阶：丰富功能与封装.html#实现" class="sidebar-link">实现</a></li></ul></li><li><a href="/我的学习笔记/06-Vue全家桶精进之路/[18]实践篇：搭建项目流程初记录.html" class="sidebar-link">[18]实践篇：搭建项目流程初记录</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/我的学习笔记/07-计算机常识积累" class="sidebar-heading clickable"><span>07-计算机常识积累</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="_17-axios-进阶-丰富功能与封装"><a href="#_17-axios-进阶-丰富功能与封装" class="header-anchor">#</a> [17] axios 进阶：丰富功能与封装</h1> <p><em>2021 年 3 月 1 日</em></p> <hr> <p></p><div class="table-of-contents"><ul><li><a href="#_17-axios-进阶-丰富功能与封装">[17] axios 进阶：丰富功能与封装</a><ul><li><a href="#初级版本">初级版本</a></li><li><a href="#目标功能">目标功能</a></li><li><a href="#config-解读与规划">config 解读与规划</a></li><li><a href="#实现">实现</a></li></ul></li><li><a href="#"></a></li></ul></div><p></p> <h2 id="初级版本"><a href="#初级版本" class="header-anchor">#</a> 初级版本</h2> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">&quot;vue&quot;</span><span class="token punctuation">;</span>
+<span class="token comment">//1.import引入插件</span>
+<span class="token keyword">import</span> Axios <span class="token keyword">from</span> <span class="token string">&quot;axios&quot;</span><span class="token punctuation">;</span>
+<span class="token comment">//2.生成实例</span>
+<span class="token keyword">const</span> axios <span class="token operator">=</span> Axios<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//3.添加请求拦截器</span>
+axios<span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span>request<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>
+  <span class="token comment">// 请求之前做什么</span>
+  <span class="token punctuation">(</span><span class="token parameter">req</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">//设置请求头</span>
+    <span class="token comment">// req.headers = { ...req.headers, a: 1 };</span>
+    <span class="token keyword">return</span> req<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 对请求错误做些什么</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">reject</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 添加响应拦截器，在真正返回response之前使用</span>
+axios<span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span>response<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>
+  <span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 对响应数据做点什么</span>
+    <span class="token keyword">return</span> response<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 对响应错误做点什么</span>
+    <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">reject</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//4.将请求封装成函数</span>
+<span class="token keyword">const</span> <span class="token function-variable function">$axios</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">url<span class="token punctuation">,</span> data</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">//axios的生命周期放大了一圈</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>url<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">&quot;cnode&quot;</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">axios</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> res<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">//5.直接调用方法</span>
+<span class="token function">$axios</span><span class="token punctuation">(</span><span class="token string">&quot;https://cnodejs.org/api/v1/topic/&quot;</span> <span class="token operator">+</span> <span class="token string">&quot;5f322ce36c9ee864cf0e4751&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
+  <span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//6.或者添加到vue原型链中方便在组件中调用</span>
+<span class="token class-name">Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$http <span class="token operator">=</span> $axios<span class="token punctuation">;</span>
+<span class="token comment">//或者抛出，在组件中引入使用</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> $axios<span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br></div></div><h2 id="目标功能"><a href="#目标功能" class="header-anchor">#</a> 目标功能</h2> <ol><li>请求的默认配置与动态配置</li> <li>拦截器</li> <li>Cancellation 实现切换页面前取消请求</li> <li>loading 状态管理</li> <li>响应及报错处理</li> <li>封装 axios 请求</li> <li>使用 class 类的概念</li></ol> <h2 id="config-解读与规划"><a href="#config-解读与规划" class="header-anchor">#</a> config 解读与规划</h2> <ul><li><p>axios 的 config 配置参数采用的是覆盖方式，如果你 created 创建实例时设置了值就覆盖</p></li> <li><p>如果没有设置值，也会有这个配置参数，采用的是 config 对象的默认值</p></li> <li><p><strong>❀ 固定选项</strong></p></li></ul> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token punctuation">{</span>
+  <span class="token comment">// 除非`url`是绝对的，否则`baseURL`将被加在`url`之前</span>
+  baseURL<span class="token operator">:</span> <span class="token string">'https://some-domain.com/api/'</span><span class="token punctuation">,</span>
+  <span class="token comment">// `headers` 设置请求头</span>
+  headers<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token string">'X-Requested-With'</span><span class="token operator">:</span> <span class="token string">'XMLHttpRequest'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// `timeout` 指定请求超时之前的毫秒数</span>
+  <span class="token comment">// 如果超时，请求将被中止</span>
+  timeout<span class="token operator">:</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token comment">// 默认为0（无超时）</span>
+  <span class="token comment">// `withCredentials`指示是否应使用凭证进行跨站点访问控制请求，即请求是否携带cookie</span>
+  withCredentials<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// default</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><ul><li><strong>❀ 动态的，不同请求将有不同的设置，暴露出参数接口</strong></li></ul> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token punctuation">{</span>
+  <span class="token comment">// 请求服务器的URL</span>
+  url<span class="token operator">:</span> <span class="token string">'/user'</span><span class="token punctuation">,</span>
+  <span class="token comment">// 使用的请求方法</span>
+  method<span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span> <span class="token comment">// default</span>
+  <span class="token comment">// `params` 是要与请求一起发送的URL参数，必须是普通对象或URLSearchParams对象</span>
+  params<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token constant">ID</span><span class="token operator">:</span> <span class="token number">12345</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// `data` 是要作为请求正文发送的数据</span>
+  <span class="token comment">// 仅适用于请求方法'PUT'，'POST'，'DELETE和'PATCH'</span>
+  <span class="token comment">// 未设置`transformRequest`时，必须为以下类型之一：</span>
+  <span class="token comment">// - 字符串，纯对象，ArrayBuffer，ArrayBufferView，URLSearchParams</span>
+  <span class="token comment">// - 仅浏览器：FormData，File，Blob</span>
+  <span class="token comment">// - 仅node：Stream，Buffer</span>
+  data<span class="token operator">:</span> <span class="token punctuation">{</span>
+    firstName<span class="token operator">:</span> <span class="token string">'Fred'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// `cancelToken` 指定可用于取消请求的取消令牌cancel token</span>
+  <span class="token comment">// （请参见下面的“取消”部分以了解详细信息）</span>
+  cancelToken<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">CancelToken</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">cancel</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><ul><li><strong>❀ 暂时不用/少用，不设置，使用默认值，要用再特殊改造</strong></li></ul> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token punctuation">{</span>
+  <span class="token comment">// `transformRequest`允许在将请求数据发送到服务器之前对其进行更改</span>
+  <span class="token comment">// 仅适用于请求方法'PUT'，'POST'，'PATCH'和'DELETE'</span>
+  <span class="token comment">// 数组中的最后一个函数必须返回字符串或Buffer，ArrayBuffer，FormData或Stream 的实例</span>
+  <span class="token comment">// 可以修改headers对象</span>
+  transformRequest<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">data<span class="token punctuation">,</span> headers</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 修改要转换数据</span>
+    <span class="token keyword">return</span> data<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token comment">// `transformResponse`允许更改响应数据，然后将其传递给then / catch</span>
+  transformResponse<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> data<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token comment">// `paramsSerializer` is an optional function in charge of serializing `params`</span>
+  <span class="token comment">// (例如 https://www.npmjs.com/package/qs, http://api.jquery.com/jquery.param/)</span>
+  <span class="token function-variable function">paramsSerializer</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">params</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> Qs<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> <span class="token punctuation">{</span>arrayFormat<span class="token operator">:</span> <span class="token string">'brackets'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// syntax alternative to send data into the body</span>
+  <span class="token comment">// method post</span>
+  <span class="token comment">// 仅发送值，而不发送键</span>
+  data<span class="token operator">:</span> <span class="token string">'Country=Brasil&amp;City=Belo Horizonte'</span><span class="token punctuation">,</span>
+  <span class="token comment">// `adapter` 允许自定义处理请求，这使得测试更加容易。</span>
+  <span class="token comment">// 返回一个promise 且提供一个有效的response (see lib/adapters/README.md).</span>
+  <span class="token function-variable function">adapter</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">config</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// `auth` 指应使用HTTP Basic auth，并提供凭据。</span>
+  <span class="token comment">// 将会设置一个`Authorization`的请求头, 覆盖现有`headers`的设置</span>
+  <span class="token comment">// `Authorization` custom headers you have set using `headers`.</span>
+  <span class="token comment">// `Authorization`自定义请求头，只能通过此参数配置HTTP Basic身份验证</span>
+  <span class="token comment">// 对于Bearer令牌等，请改用`Authorization`自定义请求头</span>
+  auth<span class="token operator">:</span> <span class="token punctuation">{</span>
+    username<span class="token operator">:</span> <span class="token string">'janedoe'</span><span class="token punctuation">,</span>
+    password<span class="token operator">:</span> <span class="token string">'s00pers3cret'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// `responseType` 表示数据与服务器将响应类型</span>
+  <span class="token comment">// 选项有： 'arraybuffer', 'document', 'json', 'text', 'stream'</span>
+  <span class="token comment">// 浏览器只有: 'blob'</span>
+  responseType<span class="token operator">:</span> <span class="token string">'json'</span><span class="token punctuation">,</span> <span class="token comment">// default</span>
+  <span class="token comment">// `responseEncoding`表示用于解码响应的编码（仅适用于Node.js）</span>
+  <span class="token comment">// 注意：忽略了“stream”或客户端请求的“responseType”</span>
+  responseEncoding<span class="token operator">:</span> <span class="token string">'utf8'</span><span class="token punctuation">,</span> <span class="token comment">// default</span>
+  <span class="token comment">// `xsrfCookieName`是cookie的名称，用作xsrf令牌的值</span>
+  xsrfCookieName<span class="token operator">:</span> <span class="token string">'XSRF-TOKEN'</span><span class="token punctuation">,</span> <span class="token comment">// default</span>
+  <span class="token comment">// `xsrfHeaderName`是带有xsrf令牌值</span>
+  xsrfHeaderName<span class="token operator">:</span> <span class="token string">'X-XSRF-TOKEN'</span><span class="token punctuation">,</span> <span class="token comment">// default</span>
+  <span class="token comment">// `onUploadProgress` 允许处理上载的进度事件，仅适用于浏览器</span>
+  <span class="token function-variable function">onUploadProgress</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">progressEvent</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Do whatever you want with the native progress event</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// `onDownloadProgress`允许处理下载的进度事件，仅适用于浏览器</span>
+  <span class="token function-variable function">onDownloadProgress</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">progressEvent</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Do whatever you want with the native progress event</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// `maxContentLength`定义http响应内容的最大大小，以node.js中允许的字节数为准</span>
+  maxContentLength<span class="token operator">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+  <span class="token comment">// `maxBodyLength`（仅node选项）定义http请求内容的最大大小（以字节为单位）</span>
+  maxBodyLength<span class="token operator">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+  <span class="token comment">// `validateStatus`对HTTP响应状态代码解析还是拒绝承诺。</span>
+  <span class="token comment">// 如果`validateStatus`返回`true`（或设置为`null` //或`undefined`），则承诺将得到解决；否则，诺言将被拒绝。</span>
+  <span class="token function-variable function">validateStatus</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">status</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> status <span class="token operator">&gt;=</span> <span class="token number">200</span> <span class="token operator">&amp;&amp;</span> status <span class="token operator">&lt;</span> <span class="token number">300</span><span class="token punctuation">;</span> <span class="token comment">// default</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// `maxRedirects` 定义在node.js中要遵循的最大重定向数。</span>
+  maxRedirects<span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token comment">// default</span>
+  <span class="token comment">// `socketPath`定义要在node.js中使用的UNIX Socket</span>
+  <span class="token comment">// e.g. 'ar/run/docker.sock' 将请求发送到docker守护进程</span>
+  <span class="token comment">// 只能指定`socketPath`或`proxy`，如果两者都指定，则使用`socketPath`</span>
+  socketPath<span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token comment">// default</span>
+  <span class="token comment">// `httpAgent` and `httpsAgent` 定义在node.js中分别执行http：//和https请求时要使用的自定义代理。这样可以添加默认情况下未启用的选项. 例如`keepAlive`</span>
+  httpAgent<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">http<span class="token punctuation">.</span>Agent</span><span class="token punctuation">(</span><span class="token punctuation">{</span> keepAlive<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  httpsAgent<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">https<span class="token punctuation">.</span>Agent</span><span class="token punctuation">(</span><span class="token punctuation">{</span> keepAlive<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token comment">// `proxy` 定义代理服务器的主机名，端口和协议。</span>
+  <span class="token comment">// 您还可以使用常规的`http_proxy`和`https_proxy`环境变量来定义代理。</span>
+  <span class="token comment">// 如果您使用环境变量作为代理配置，还可以定义一个`no_proxy`环境变量作为不被代理的comma-separated列表的domains。</span>
+  <span class="token comment">// 使用`false`禁用代理，忽略环境变量。</span>
+  <span class="token comment">// `auth`指示应使用HTTP Basic auth连接到代理，并提供凭据。</span>
+  <span class="token comment">// 这将设置一个“Proxy-Authorization”自定义请求头，覆盖现有的“headers”设置</span>
+  <span class="token comment">// 如果代理服务器使用HTTPS，则必须将协议设置为`https`</span>
+  proxy<span class="token operator">:</span> <span class="token punctuation">{</span>
+    protocol<span class="token operator">:</span> <span class="token string">'https'</span><span class="token punctuation">,</span>
+    host<span class="token operator">:</span> <span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span>
+    port<span class="token operator">:</span> <span class="token number">9000</span><span class="token punctuation">,</span>
+    auth<span class="token operator">:</span> <span class="token punctuation">{</span>
+      username<span class="token operator">:</span> <span class="token string">'mikeymike'</span><span class="token punctuation">,</span>
+      password<span class="token operator">:</span> <span class="token string">'rapunz3l'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// `decompress` 指示是否应自动对响应主体进行解压缩</span>
+  <span class="token comment">//如果设置为“ true”,将会从所有解压缩响应的响应对象中删除'content-encoding'请求头</span>
+  <span class="token comment">// - 仅node（XHR无法关闭解压缩）</span>
+  decompress<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token comment">// default</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br></div></div><h2 id="实现"><a href="#实现" class="header-anchor">#</a> 实现</h2> <h1 id=""><a href="#" class="header-anchor">#</a></h1> <hr> <p><em>Copyright © 2020 - 2021 by 叶旭瑶 . All Rights Reserved .</em></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/我的学习笔记/06-Vue全家桶精进之路/[16]axios进阶：Cancellation实现在切换页面前取消请求.html" class="prev">
+        [16]axios进阶：Cancellation实现在切换页面前取消请求
+      </a></span> <span class="next"><a href="/我的学习笔记/06-Vue全家桶精进之路/[18]实践篇：搭建项目流程初记录.html">
+        [18]实践篇：搭建项目流程初记录
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.a8df1c95.js" defer></script><script src="/assets/js/2.48d09664.js" defer></script><script src="/assets/js/75.bf491959.js" defer></script>
+  </body>
+</html>
